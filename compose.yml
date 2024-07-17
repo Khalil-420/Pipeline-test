@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /local/sync:/local/sync
+    environment:
+      SYNCTHING_API_KEY: "API_KEY"
+      SYNCTHING_URL: "http://127.0.0.1:8384"
+      LOCAL_DEVICE_ID: "DEVICE_ID"
+      EMAIL_HOST: "smtp.gmail.com"
+      EMAIL_PORT: 465
+      EMAIL_HOST_USER: "mail@gmail.com"
+      EMAIL_HOST_PASSWORD: "app pass"
+      EMAIL_FROM: "mail@gmail.com"
+      EMAIL_TO: "anothermail@gmail.com"
+    network_mode: host
+
