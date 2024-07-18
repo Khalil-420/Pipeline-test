@@ -13,6 +13,11 @@ node {
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}/gitleaks-report.txt:/tmp/gitleaks-report.txt\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
         }
     
+    stage('OWASP Dependency Check'){
+        sh"chmod +x ${WORKSPACE}/owasp-dependency-check.sh"
+        sh"bash ${WORKSPACE}/owasp-dependency-check.sh"
+    }
+
     stage('Build Docker Image'){
         docker.build("xhalyl/fastapi-app:build","-f Dockerfile .")    
         }
