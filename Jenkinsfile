@@ -2,7 +2,7 @@ node {
     withCredentials([usernamePassword(credentialsId: 'docker_creds', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
         DOCKER_HUB_CREDENTIALS = "${DOCKER_HUB_USERNAME}:${DOCKER_HUB_PASSWORD}"}
     output = "${WORKSPACE}/reports"
-    mvnHome = tool name: 'Maven', type: 'hudson.tasks.Maven$MavenInstallation'
+    scannerHome = tool 'sonar';
 
     stage('Checkout') {
 
@@ -21,7 +21,7 @@ node {
     
     stage('SAST SonarQube'){
         withSonarQubeEnv('sonar'){
-            sh"${mvnHome}/bin/mvn sonar:sonar"
+            sh "${scannerHome}/bin/sonar-scanner"
         }
     }
 
