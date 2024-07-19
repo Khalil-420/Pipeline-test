@@ -15,8 +15,8 @@ node {
 
     stage('GitLeaks Scan') {
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}:/tmp\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.json --exit-code 0"
-            withCredentials(credentialsId:'xhalyl_defectdojo'){
-            sh "./defectdojo.sh http://localhost:8080 xhalyl_defectdojo 10 \"Gitleaks Scan\" \"${output}/gitleaks-report.json\""
+            withCredentials([string(credentialsId: 'xhalyl_defectdojo', variable: 'API_KEY')]){
+            sh "./defectdojo.sh http://localhost:8080 \"${API_KEY} 10 \"Gitleaks Scan\" \"${output}/gitleaks-report.json\""
         }
         }
     
