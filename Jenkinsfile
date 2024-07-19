@@ -34,7 +34,7 @@ node {
     stage('Container Scanning Trivy'){
         sh"docker run --rm -v \"${WORKSPACE}/../:/root/.cache/\" aquasec/trivy:latest image xhalyl/fastapi-app:build --scanners vuln -f json --output /root/.cache/report_trivy.json"
         withCredentials([string(credentialsId: 'xhalyl_defectdojo', variable: 'API_KEY')]){
-            sh "bash defectdojo.sh  \"${API_KEY}\" \"Gitleaks Scan\" \"../report_trivy.json\" \"http://localhost:8080\" DevSecOps DevSecOps"
+            sh "bash defectdojo.sh  \"${API_KEY}\" \"Trivy Scan\" \"../report_trivy.json\" \"http://localhost:8080\" DevSecOps DevSecOps"
         }
     }
 
