@@ -19,7 +19,7 @@ node {
         }
     
     stage('SAST SonarQube'){
-        withSonarQubeEnv('devsecops'){
+        withSonarQubeEnv('sonar'){
             sh'mvn sonar:sonar'
         }
     }
