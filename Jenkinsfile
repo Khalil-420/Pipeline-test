@@ -14,7 +14,7 @@ node {
 
 
     stage('GitLeaks Scan') {
-            sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}/gitleaks-report.txt:/tmp/gitleaks-report.txt\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
+            sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}:/tmp\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
         }
     
     stage('SAST SonarQube'){
