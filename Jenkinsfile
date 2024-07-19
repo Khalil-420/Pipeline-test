@@ -3,6 +3,10 @@ node {
         DOCKER_HUB_CREDENTIALS = "${DOCKER_HUB_USERNAME}:${DOCKER_HUB_PASSWORD}"
     output = "${WORKSPACE}/reports"
 }
+
+    tools {
+        maven "Maven"
+    }
     stage('Checkout') {
 
     script {
