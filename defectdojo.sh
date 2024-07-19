@@ -1,26 +1,24 @@
 #!/bin/bash
 
 # Check if the correct number of arguments are provided
-if [ "$#" -ne 7 ]; then
+if [ "$#" -ne 6 ]; then
     echo "Usage: $0 <API_KEY> <ENGAGEMENT_ID> <SCAN_TYPE> <FILE_PATH> <DOJO_INSTANCE_URL>"
     exit 1
 fi
 
 # Assign input arguments to variables
 API_KEY=$1
-ENGAGEMENT_ID=$2
-SCAN_TYPE=$3
-FILE_PATH=$4
-DOJO_INSTANCE_URL=$5
-PRODUCT_NAME=$6
-ENGAGEMENT_NAME=$7
+SCAN_TYPE=$2
+FILE_PATH=$3
+DOJO_INSTANCE_URL=$4
+PRODUCT_NAME=$5
+ENGAGEMENT_NAME=$6
 
 # Perform the curl command
 curl -X POST "${DOJO_INSTANCE_URL}/api/v2/reimport-scan/" \
 -H "Authorization: Token ${API_KEY}" \
 -H "Content-Type: multipart/form-data" \
 -F "product_name=${PRODUCT_NAME}" \
--F "engagement=${ENGAGEMENT_ID}" \
 -F "scan_type=${SCAN_TYPE}" \
 -F "engagement_name=${ENGAGEMENT_NAME}"
 -F "file=@${FILE_PATH}"
