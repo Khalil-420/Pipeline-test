@@ -15,7 +15,7 @@ node {
 
 
     stage('GitLeaks Scan') {
-        sh "echo ${output}"
+        sh "touch ${output}/gitleaks-report.txt"
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}/gitleaks-report.txt:/tmp/gitleaks-report.txt\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
         }
     
@@ -30,7 +30,7 @@ node {
         }
 
     stage('Container Scanning Trivy'){
-        sh"docker run --rm -v \"${WORKSPACE}:/root/.cache/\" aquasec/trivy:latest image xhalyl/fastapi-app:build --scanners vuln -f json --output /root/.cache/reports/report_trivy.json"
+        sh"docker run --rm -v \"${WORKSPACE}/../:/root/.cache/\" aquasec/trivy:latest image xhalyl/fastapi-app:build --scanners vuln -f json --output /root/.cache/reports/report_trivy.json"
     }
 
 
