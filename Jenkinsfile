@@ -17,6 +17,12 @@ node {
         sh "echo ${output}"
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}/gitleaks-report.txt:/tmp/gitleaks-report.txt\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
         }
+    
+    stage('SAST SonarQube'){
+        withSonarQubeEnv('devsecops'){
+            sh'mvn sonar:sonar'
+        }
+    }
 
     stage('Build Docker Image'){
         docker.build("xhalyl/fastapi-app:build","-f Dockerfile .")    
