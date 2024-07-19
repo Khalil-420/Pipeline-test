@@ -30,7 +30,7 @@ node {
         }
 
     stage('Container Scanning Trivy'){
-        sh"docker run --rm -v \"${WORKSPACE}:/root/.cache/\" aquasec/trivy:latest -q xhalyl/fastapi-app:build --exit-code 0 --light openjdk:8-jdk-alpine -f json -o \"${WORKSPACE}/reports/report-trivy.txt\""
+        sh"docker run --rm -v \"${WORKSPACE}:/root/.cache/\" aquasec/trivy:latest -q xhalyl/fastapi-app:build --light openjdk:8-jdk-alpine -f json -o \"${WORKSPACE}/reports/report-trivy.txt\""
     }
 
 
