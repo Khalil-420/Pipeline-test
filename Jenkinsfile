@@ -30,7 +30,7 @@ node {
         }
 
     stage('Container Scanning Trivy'){
-        sh"docker run --rm -v \"${WORKSPACE}:/root/.cache/\" aquasec/trivy:latest -q xhalyl/fastapi-app:build python:3.4-alpine -f json -o \"${WORKSPACE}/reports/report-trivy.txt\""
+        sh"docker run --rm -v \"${WORKSPACE}:/root/.cache/\" aquasec/trivy:latest -q xhalyl/fastapi-app:build -f json -o \"${WORKSPACE}/reports/report-trivy.json\" python:3.4-alpine"
     }
 
 
