@@ -5,7 +5,6 @@ node {
     scannerHome = tool 'sonar';
 
     stage('Checkout') {
-        sh"rm -rf \"${WORKSPACE}\""
     script {
             git branch: 'main',
                 credentialsId: 'xhalyl_github',
@@ -15,8 +14,6 @@ node {
 
 
     stage('GitLeaks Scan') {
-        sh "mkdir \"${output}\""
-        sh "touch \"${output}/gitleaks-report.txt\" && chmod 666 \"${output}/gitleaks-report.txt\""
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}/gitleaks-report.txt:/tmp/gitleaks-report.txt\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
         }
     
