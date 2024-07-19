@@ -28,7 +28,7 @@ node {
         }
 
     stage('Container Scanning Trivy'){
-        sh"docker run --rm -v \"${WORKSPACE}/../:/root/.cache/\" aquasec/trivy:latest image xhalyl/fastapi-app:build --scanners vuln -f json --output /root/.cache/reports/report_trivy.json"
+        sh"docker run --rm -v \"${WORKSPACE}/../:/root/.cache/\" aquasec/trivy:latest image xhalyl/fastapi-app:build --scanners vuln -f json --output /root/.cache/report_trivy.json"
     }
 
 
