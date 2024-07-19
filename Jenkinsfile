@@ -45,10 +45,12 @@ node {
 
     try {
         sh'docker system prune -f'
+        sh"rm -rf ${WORKSPACE}"
         echo 'Successfully Deployed'
     }
     catch (Exception e){
         echo 'Pipeline failed'
+        sh"rm -rf ${WORKSPACE}"
         throw e
     }
 }
