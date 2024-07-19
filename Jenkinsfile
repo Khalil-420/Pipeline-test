@@ -21,7 +21,7 @@ node {
     
     stage('SAST SonarQube'){
         withSonarQubeEnv(credentialsId:'sonar'){
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar"
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=xhalyl_sonar"
         }
     }
 
