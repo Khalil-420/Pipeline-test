@@ -5,7 +5,7 @@ node {
     scannerHome = tool 'sonar';
 
     stage('Checkout') {
-        sh"rm -rf ${WORKSPACE}"
+        sh"rm -rf \"${WORKSPACE}\""
     script {
             git branch: 'main',
                 credentialsId: 'xhalyl_github',
