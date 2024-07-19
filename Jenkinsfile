@@ -16,14 +16,14 @@ node {
     stage('GitLeaks Scan') {
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}:/tmp\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.json --exit-code 0"
             withCredentials([string(credentialsId: 'xhalyl_defectdojo', variable: 'API_KEY')]){
-            sh "bash defectdojo.sh  \"${API_KEY}\" 1 \"Gitleaks Scan\" \"./reports/gitleaks-report.json\" \"http://localhost:8080\" DevSecOps"
+            sh "bash defectdojo.sh  \"${API_KEY}\" 1 \"Gitleaks Scan\" \"./reports/gitleaks-report.json\" \"http://localhost:8080\" DevSecOps DevSecOps"
         }
         }
     
 
     stage('SAST SonarQube'){
         withSonarQubeEnv(credentialsId:'xhalyl_sonar'){
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=xhalyl_sonar"
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=xhalyl_sonar -o sonar_report.json"
         }
     }
 
@@ -34,7 +34,7 @@ node {
     stage('Container Scanning Trivy'){
         sh"docker run --rm -v \"${WORKSPACE}/../:/root/.cache/\" aquasec/trivy:latest image xhalyl/fastapi-app:build --scanners vuln -f json --output /root/.cache/report_trivy.json"
         withCredentials([string(credentialsId: 'xhalyl_defectdojo', variable: 'API_KEY')]){
-            sh "bash defectdojo.sh  \"${API_KEY}\" 1 \"Gitleaks Scan\" \"../report_trivy.json\" \"http://localhost:8080\" DevSecOps"
+            sh "bash defectdojo.sh  \"${API_KEY}\" 1 \"Gitleaks Scan\" \"../report_trivy.json\" \"http://localhost:8080\" DevSecOps DevSecOps"
         }
     }
 

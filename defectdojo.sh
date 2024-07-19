@@ -13,6 +13,7 @@ SCAN_TYPE=$3
 FILE_PATH=$4
 DOJO_INSTANCE_URL=$5
 PRODUCT_NAME=$6
+ENGAGEMENT_NAME=$7
 
 # Perform the curl command
 curl -X POST "${DOJO_INSTANCE_URL}/api/v2/reimport-scan/" \
@@ -21,6 +22,7 @@ curl -X POST "${DOJO_INSTANCE_URL}/api/v2/reimport-scan/" \
 -F "product_name=${PRODUCT_NAME}" \
 -F "engagement=${ENGAGEMENT_ID}" \
 -F "scan_type=${SCAN_TYPE}" \
+-F "engagement_name=${ENGAGEMENT_NAME}
 -F "file=@${FILE_PATH}"
 
 # Check if the curl command was successful
