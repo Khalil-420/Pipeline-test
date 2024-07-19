@@ -17,6 +17,7 @@ node {
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}:/tmp\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.txt --exit-code 0"
         }
     
+
     stage('SAST SonarQube'){
         withSonarQubeEnv(credentialsId:'xhalyl_sonar'){
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=xhalyl_sonar"
