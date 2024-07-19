@@ -15,9 +15,10 @@ node {
 
     stage('GitLeaks Scan') {
             sh "docker run --rm -v \"${WORKSPACE}:/repo\" -v \"${output}:/tmp\" zricethezav/gitleaks:latest  detect --source /repo --report-path /tmp/gitleaks-report.json --exit-code 0"
-            withCredentials([string(credentialsId: 'xhalyl_defectdojo', variable: 'API_KEY')]){
-            sh "./defectdojo.sh http://localhost:8080 \"${API_KEY}\" 1 \"Gitleaks Scan\" \"./reports/gitleaks-report.json\""
-        }
+            sh"cat \"${output}/gitleaks-report.json\""
+            //withCredentials([string(credentialsId: 'xhalyl_defectdojo', variable: 'API_KEY')]){
+            //"sh "./defectdojo.sh http://localhost:8080 \"${API_KEY}\" 1 \"Gitleaks Scan\" \"./reports/gitleaks-report.json\""
+        //}
         }
     
 
