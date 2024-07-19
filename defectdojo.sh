@@ -15,7 +15,7 @@ PRODUCT_NAME=$5
 ENGAGEMENT_NAME=$6
 
 # Perform the curl command
-curl -X POST "${DOJO_INSTANCE_URL}/api/v2/reimport-scan/" \
+curl -X POST "${DOJO_INSTANCE_URL}/api/v2/import-scan/" \
 -H "Authorization: Token ${API_KEY}" \
 -H "Content-Type: multipart/form-data" \
 -F "product_name=${PRODUCT_NAME}" \
