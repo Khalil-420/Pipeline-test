@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if the correct number of arguments are provided
-if [ "$#" -ne 6 ]; then
+if [ "$#" -ne 7 ]; then
     echo "Usage: $0 <API_KEY> <ENGAGEMENT_ID> <SCAN_TYPE> <FILE_PATH> <DOJO_INSTANCE_URL>"
     exit 1
 fi
