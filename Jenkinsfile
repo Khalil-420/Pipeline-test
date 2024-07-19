@@ -20,7 +20,7 @@ node {
         }
     
     stage('SAST SonarQube'){
-        withSonarQubeEnv('sonar'){
+        withSonarQubeEnv(credentialsId:'xhalyl_sonar'){
             sh "${scannerHome}/bin/sonar-scanner"
         }
     }
