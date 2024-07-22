@@ -7,6 +7,7 @@ node {
     stage('Checkout') {
     script {
             git branch: 'master',
+                credentialsId:'xhalyl_github'
                 url: 'https://github.com/Khalil-420/Pipeline-test'
                 }
     }
