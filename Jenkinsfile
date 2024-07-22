@@ -8,7 +8,7 @@ node {
     script {
             git branch: 'master',
                 credentialsId:'xhalyl_github'
-                url: 'https://github.com/Khalil-420/Pipeline-test'
+                url: 'git@github.com:Khalil-420/Pipeline-test.git'
                 }
     }
 
