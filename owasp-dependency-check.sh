@@ -20,7 +20,7 @@ docker pull owasp/dependency-check:$DC_VERSION
 
 docker run --rm \
     -e user=$USER \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
+    -u "root:root" \
     --volume "$(pwd):/src:z" \
     --volume "$DATA_DIRECTORY":/usr/share/dependency-check/data:z \
     --volume "reports:/report" \
