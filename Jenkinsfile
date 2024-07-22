@@ -18,7 +18,12 @@ node {
             sh "bash ../defectdojo.sh  \"${API_KEY}\" \"Gitleaks Scan\" \"./reports/gitleaks-report.json\" \"http://localhost:8080\" DevSecOps DevSecOps"
         }
         }
-    
+
+stage('SCA owasp-dependency-check'){
+	sh 'chmod +x owasp-dependency-check.sh'
+	sh 'bash owasp-dependency-check.sh'
+
+}
 
     stage('SAST SonarQube'){
         withSonarQubeEnv(credentialsId:'xhalyl_sonar'){
