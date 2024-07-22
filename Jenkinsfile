@@ -23,6 +23,7 @@ node {
 stage('SCA owasp-dependency-check'){
 	sh 'chmod +x owasp-dependency-check.sh'
 	sh 'bash owasp-dependency-check.sh'
+    sh "bash ../defectdojo.sh  \"${API_KEY}\" \"Dependency Check Scan\" \"./reports/dependency-check-report.json\" \"http://localhost:8080\" DevSecOps DevSecOps"
 
 }
 
