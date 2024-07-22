@@ -7,7 +7,7 @@ node {
     stage('Checkout') {
     script {
             git branch: 'master',
-                url: 'https://github.com/thingsboard/thingsboard.git'
+                url: 'https://github.com/Khalil-420/Pipeline-test'
                 }
     }
 
@@ -26,7 +26,7 @@ node {
         }
     }
 
-    /*stage('Build Docker Image'){
+    stage('Build Docker Image'){
         docker.build("xhalyl/fastapi-app:build","-f Dockerfile .")    
         }
 
@@ -47,7 +47,7 @@ node {
     stage('Deploy'){
         sh'docker-compose down'
         sh'docker-compose up -d'
-    }*/
+    }
 
     try {
         sh'docker system prune -f'
