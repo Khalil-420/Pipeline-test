@@ -6,9 +6,8 @@ node {
 
     stage('Checkout') {
     script {
-            git branch: 'main',
-                credentialsId: 'xhalyl_github',
-                url: 'git@github.com:Khalil-420/Pipeline-test.git'
+            git branch: 'master',
+                url: 'https://github.com/thingsboard/thingsboard.git'
                 }
     }
 
