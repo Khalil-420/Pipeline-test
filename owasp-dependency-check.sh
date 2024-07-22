@@ -23,7 +23,7 @@ docker run --rm \
     -u "root:root" \
     --volume "$(pwd):/src:z" \
     --volume "$DATA_DIRECTORY":/usr/share/dependency-check/data:z \
-    --volume "reports:/report" \
+    --volume "$(pwd)/reports:/report" \
     owasp/dependency-check:$DC_VERSION \
     --scan /src \
     --format "JSON" \
